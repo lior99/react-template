@@ -11,7 +11,9 @@ function ListItems() {
 
 	return (
 		<>
-			{ items.map(item => <Item data={item} key={item.id} />)}
+			<div className="container">
+				{ items.map(item => <Item data={item} key={item.id} />)}
+			</div>
 		</>
 	)
 }
