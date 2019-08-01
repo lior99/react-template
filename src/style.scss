@@ -1,0 +1,16 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+}
+
+.item {
+	font-size: 1.2em;
+	margin: 0.625em 0 1.250em 0.625em;
+	cursor: pointer;
+
+	&.done {
+		text-decoration: line-through;
+		font-style: italic;
+	}
+}
