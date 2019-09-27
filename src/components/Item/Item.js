@@ -1,11 +1,23 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-function Item({data}) {
+function Item({ data }) {
 	const [done, setDone] = useState(false);
-	
+
+	const className = `item ${done ? 'done' : ''}`;
+
 	return (
-		<div className={`item ${done ? 'done' : ''}`} onClick={() => setDone(done => !done)}>{data.title}</div>
-	)
+		<div
+			className={className}
+			onClick={() => setDone(done => !done)}
+		>
+			<input
+				type="checkbox"
+				className="checkbox-box"
+				checked={done ? 'checked' : ''}
+			/>
+			{data.title}
+		</div>
+	);
 }
 
 export default Item;
