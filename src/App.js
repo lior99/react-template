@@ -1,15 +1,9 @@
 import React from 'react';
-import ListItems from './components/ListItems/ListItems';
 import './style.scss';
+import People from './components/People/People';
 
 function App() {
-	return (
-		<>
-			<ListItems />
-		</>
-	)
+  return <People />;
 }
 
 export default App;
-
-
