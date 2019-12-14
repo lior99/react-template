@@ -4,7 +4,7 @@ const People = () => {
   const [peopleResult, setPeopleResult] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const getPeople = () => {
+  const fetchPeople = () => {
     return new Promise(resolve => {
       setTimeout(() => {
         resolve([
@@ -16,18 +16,18 @@ const People = () => {
     });
   };
 
+  const getPeople = async () => {};
+
   useEffect(() => {
-    const callGetPeople = async () => {
+    (async () => {
       try {
-        const result = await getPeople();
+        const result = await fetchPeople();
         setPeopleResult(result);
         setLoading(false);
       } catch (err) {
         console.error('Got error', err);
       }
-    };
-
-    callGetPeople();
+    })();
   }, []);
 
   useEffect(() => {
