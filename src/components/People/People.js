@@ -1,41 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import fetchPeople from '../../api/';
 
 const People = () => {
   const [peopleResult, setPeopleResult] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchPeople = () => {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve([
-          { id: 1, name: 'James Bond' },
-          { id: 2, name: 'James Dean' },
-          { id: 3, name: 'Bruce Wayne' }
-        ]);
-      }, 2000);
-    });
-  };
-
-  const getPeople = async () => {};
-
   useEffect(() => {
-    (async () => {
-      try {
-        const result = await fetchPeople();
-        setPeopleResult(result);
-        setLoading(false);
-      } catch (err) {
-        console.error('Got error', err);
+      const init = async () => {
+        try {
+          const result = await fetchPeople();
+          setPeopleResult(result);
+          setLoading(false);
+        } catch (err) {
+          console.error('Got error', err);
+        }  
       }
-    })();
-  }, []);
 
-  useEffect(() => {
-    const title = peopleResult[peopleResult.length - 1]?.title || '';
-    if (title) {
-      console.log('title', title);
-    }
-  }, [peopleResult.length]);
+      init(); 
+  }, []);
 
   const addPerson = () => {
     const newPerson = {
@@ -47,22 +29,20 @@ const People = () => {
     setPeopleResult([...peopleResult, newPerson]);
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  return loading
+    ? <div>Loading..</div>
+    : (
+        <div className="people-wrapper">
+        {peopleResult.map((person, index) => (
+          <div className="person" key={`person_${index}`}>
+            <div>Id: {person.id}</div>
+            <div>Name: {person.name}</div>
+          </div>
+        ))}
 
-  return (
-    <div className="people-wrapper">
-      {peopleResult.map((person, index) => (
-        <div className="person" key={`person_${index}`}>
-          <div>Id: {person.id}</div>
-          <div>Name: {person.name}</div>
-        </div>
-      ))}
-
-      <button onClick={addPerson}>Add person</button>
-    </div>
-  );
+        <button onClick={addPerson}>Add person</button>
+      </div>
+    )
 };
 
 export default People;
