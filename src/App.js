@@ -1,9 +1,9 @@
 import React from 'react';
 import './style.scss';
-import People from './components/People/People';
+import Timer from './components/Timer';
 
 function App() {
-  return <People />;
+  return <Timer />;
 }
 
 export default App;
