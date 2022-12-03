@@ -30,9 +30,19 @@ function Timer() {
         }
     });
 
+    useEffect(() => {
+        if (!time) {
+            const tempTime = getTime();
+            setTime(tempTime);
+        }
+    }, [])
+
     return (
-        <div className='container'>
-            { time }
+        <div>
+            <h1 className='title'>Hello from React app!</h1>
+            <div className='container'>
+                { time }
+            </div>
         </div>
     );
 }
